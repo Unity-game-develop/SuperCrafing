@@ -11,13 +11,17 @@ namespace Game
         private List<UIInventorySlot> _uiInventorySlots = new List<UIInventorySlot>();
         private int defaultSlotNumber = 12;
 
-        void Start()
+        void Awake()
         {
             _slotPref.gameObject.SetActive(false);
             for(int i = 0; i < defaultSlotNumber; i++)
             {
                 CreateNewSlot();
             }
+        }
+
+        void Start()
+        {
         }
 
         private void CreateNewSlot()

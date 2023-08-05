@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class RecipeSOCreator : MonoBehaviour
+    public class RecipeSO : MonoBehaviour
     {
     }
 }

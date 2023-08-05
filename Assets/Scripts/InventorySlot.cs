@@ -8,10 +8,19 @@ namespace Game
     [System.Serializable]
     public class InventorySlot 
     {
-        private ItemSO _item;
-        private int _quantity;
-        private int _maxQuantity = 20;
-        public bool isStackAble => _quantity < _maxQuantity;
+        [SerializeField] private ItemSO _item;
+        [SerializeField] private int _quantity;
+        [SerializeField] private int _maxQuantity = 20;
+        public bool isStackAble => _quantity < _maxQuantity && _quantity > 0;
+
+        public int Quantity
+        {
+            get => _quantity;
+            set 
+            {
+                _quantity = value;
+            }
+        }
 
         public void AddTosSlot(int quantity, out int returnQuantity)
         {
@@ -25,18 +34,14 @@ namespace Game
             this._item = item;
             this._quantity = quantity;
         }
-        public void SetQuantity(int quantity)
-        {
-            this._quantity = quantity;
-        }
 
+        public ItemSO GetItem()
+        {
+            return _item;
+        }
         public Sprite GetIcon()
         {
             return _item._itemIcon;
-        }
-        public int GetQuantity()
-        {
-            return _quantity;
         }
     }
 
