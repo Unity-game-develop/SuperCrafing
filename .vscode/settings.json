@@ -53,5 +53,9 @@
         "Temp/":true,
         "*.csproj":true
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "Itemable",
+        "Stackable"
+    ]
 }

@@ -11,7 +11,8 @@ namespace Game
         [SerializeField] private ItemSO _item;
         [SerializeField] private int _quantity;
         [SerializeField] private int _maxQuantity = 20;
-        public bool isStackAble => _quantity < _maxQuantity && _quantity > 0;
+        public bool isStackable => _quantity < _maxQuantity;
+        public bool isResetItemable => _quantity == 0;
 
         public int Quantity
         {
@@ -22,8 +23,9 @@ namespace Game
             }
         }
 
-        public void AddTosSlot(int quantity, out int returnQuantity)
+        public void AddTosSlot(ItemSO item, int quantity, out int returnQuantity)
         {
+            this._item = item;
             int stackableQuantity = _maxQuantity - _quantity;
             returnQuantity = Mathf.Clamp(quantity - stackableQuantity, 0, 20);
             _quantity += quantity - returnQuantity;

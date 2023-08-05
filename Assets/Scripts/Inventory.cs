@@ -25,6 +25,14 @@ namespace Game
             {
                 RemoveFromInventory(0);
             }
+
+            if(Input.GetKeyDown(KeyCode.B))
+            {
+                foreach(var item in defaultItem)
+                {
+                    AddToInventory(item);
+                }
+            }
         }
 
         public void AddToInventory(ItemSO item, int quantity = 1)
@@ -32,7 +40,7 @@ namespace Game
             int returnQuantity = quantity;
             foreach(var slot in GetStackableSlot(item))
             {
-                slot.AddTosSlot(returnQuantity, out returnQuantity);
+                slot.AddTosSlot(item, returnQuantity, out returnQuantity);
             }
 
             // Go through all stackable slots
@@ -48,6 +56,7 @@ namespace Game
 
         public void RemoveFromInventory(int slotIndex, int quantity = 1)
         {
+            if(_inventorySlots[slotIndex].Quantity == 0) return;
             _inventorySlots[slotIndex].Quantity -= quantity;
 
             UpdateUI();
@@ -55,7 +64,8 @@ namespace Game
 
         private List<InventorySlot> GetStackableSlot(ItemSO item)
         {
-            return _inventorySlots.Where(x => x.GetItem() == item && x.isStackAble == true).ToList();
+            return _inventorySlots.Where(x => x.GetItem() == item && x.isStackable == true || 
+            x.GetItem() == item && x.isResetItemable == true).ToList();
         }
 
         public void UpdateUI()

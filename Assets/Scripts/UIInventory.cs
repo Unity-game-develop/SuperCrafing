@@ -39,7 +39,7 @@ namespace Game
                 {
                     CreateNewSlot();
                 }
-                _uiInventorySlots[i].SetInventoryUI(inventorySlots[i]);
+                _uiInventorySlots[i].SetInventoryUI(inventorySlots[i], i);
             }
         }
     }
