@@ -63,6 +63,9 @@ namespace Game
 
             _tempImage = Instantiate(_icon, _icon.canvas.transform);
             _tempImage.transform.position = eventData.position;
+            _tempImage.raycastTarget = false;
+            // _tempImage.GetComponent<CanvasGroup>().interactable = false;
+            MouseHolder.Instance.SetTempItem(_tempItem);
         }
 
         private void DisplayDebug()
@@ -72,7 +75,7 @@ namespace Game
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            DisplayDebug();
+            Destroy(_tempImage);
         }
 
         public void OnDrop(PointerEventData eventData)
