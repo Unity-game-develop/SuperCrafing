@@ -14,6 +14,7 @@ namespace Game
         public string _itemName;
         [TextArea(10, 15)]
         public string _itemDescription;
+        public int _price;
     }
 
 }

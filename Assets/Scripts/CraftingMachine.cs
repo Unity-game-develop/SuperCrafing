@@ -22,7 +22,7 @@ namespace Game
         
         void Update()
         {
-            Debug.Log(_recipeList.Count);
+            // Debug.Log(_recipeList.Count);
         }
 
         public void SetItem(ItemSO item)
@@ -58,7 +58,7 @@ namespace Game
 
         public ItemSO Craft()
         {
-            Debug.Log(_recipeList.Count());
+            // Debug.Log(_recipeList.Count());
             foreach(var recipe in _recipeList)
             {
                 if(CompareRecipe(recipe, _item1, _item2))

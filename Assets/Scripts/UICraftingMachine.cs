@@ -11,7 +11,7 @@ namespace Game
 
         public void OnDrop(PointerEventData eventData)
         {
-            Debug.Log("OnDrop");
+            // Debug.Log("OnDrop");
             ItemSO inputItem = MouseHolder.Instance.GetItem();
 
             _craftingMachine.SetItem(inputItem);

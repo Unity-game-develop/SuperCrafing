@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5057b3e5730019d47b48a952bef956a7, type: 3}
   m_Name: Agate
   m_EditorClassIdentifier: 
-  _itemIcon: {fileID: 21300000, guid: b3631018921306b47ac3e336a9fa5fc3, type: 3}
+  _itemIcon: {fileID: 21300000, guid: 35a5002894810f748bd46cc9580a23ff, type: 3}
   _itemName: Agate
   _itemDescription: One of minerals
+  _price: 10
