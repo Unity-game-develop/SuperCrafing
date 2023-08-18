@@ -8,7 +8,9 @@ namespace Game
 {
     public class CraftingMachine : MonoBehaviour 
     {
+        [SerializeField] private CraftingMachineAnimation _craftingAnimation;
         [SerializeField] private List<RecipeSO> _recipeList;
+        [SerializeField] private CraftingNewItem _craftingNewItem;
 
         private ItemSO _item1, _item2;
         private ItemSO _resultItem;
@@ -18,6 +20,7 @@ namespace Game
             // _recipeList = _recipeList.Distinct().ToList();
             UIManager.Instance._craftRequest = StartCraft;
             Debug.Log(_recipeList.Count);
+            _craftingNewItem.gameObject.SetActive(false);
         }
         
         void Update()
@@ -52,8 +55,16 @@ namespace Game
 
         public void StartCraft()
         {
-            _resultItem = Craft();
-            // Debug.Log(Craft());
+            _craftingAnimation.StartCraftAnimation();
+            NOOD.NoodyCustomCode.StartDelayFunction(() => 
+            {
+                _resultItem = Craft(); 
+                //TODO: Spawn new item on the screen
+                _craftingNewItem.gameObject.SetActive(true);
+                _craftingNewItem.CreateNewItem(_resultItem._itemIcon);
+
+            }, _craftingAnimation.GetCurrentAnimationTime());
+
         }
 
         public ItemSO Craft()
