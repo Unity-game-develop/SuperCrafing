@@ -16,7 +16,7 @@ namespace Game
         {
             _icon.sprite = item._itemIcon;
             _nameText.text = item._itemName;
-            _moneyText.text = item._price.ToString();
+            _moneyText.text = item._itemPrice.ToString();
         }
     }
 

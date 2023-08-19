@@ -22,7 +22,7 @@ namespace Game
             newItem._itemIcon = icon;
             newItem._itemName = itemName;
             newItem._itemDescription = itemDescription;
-            string path = $"Assets/Scripts/ItemSO/{itemName.ToString().Replace(" ", "")}.asset";
+            string path = $"Assets/Resources/ItemSO/{itemName.ToString().Replace(" ", "")}.asset";
             AssetDatabase.CreateAsset(newItem, path);
         }
     }

@@ -17,11 +17,30 @@ namespace Game
 
             foreach(var order in _defaultOrder)
             {
-                CreateOrder(order);
+                AddToWaitingList(order);
             }
         }
 
-        public void CreateOrder(ItemSO item)
+        public void UpdateUI(List<ItemSO> waitingItemList)
+        {
+            foreach(var order in _waitingOrder)
+            {
+                order.gameObject.SetActive(false);
+            }
+
+            for(int i = 0; i < waitingItemList.Count; i++)
+            {
+                if(i > _waitingOrder.Count - 1)
+                {
+                    AddToWaitingList(waitingItemList[i]);
+                    continue;
+                }
+                _waitingOrder[i].SetOrderItem(waitingItemList[i]);
+                _waitingOrder[i].gameObject.SetActive(true);
+            }
+        }
+
+        public void AddToWaitingList(ItemSO item)
         {
             UIOrderElement newOrder = Instantiate(_orderElementPref, _orderElementParentTransform);
             newOrder.SetOrderItem(item);

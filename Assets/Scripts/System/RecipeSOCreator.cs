@@ -28,7 +28,7 @@ namespace Game
             recipe.item1 = input1;
             recipe.item2 = input2;
             recipe.result = result;
-            string path = $"Assets/Scripts/RecipeSO/Recipe{result.name.Replace(" ", "")}.asset";
+            string path = $"Assets/Resources/RecipeSO/Recipe{result.name.Replace(" ", "")}.asset";
             AssetDatabase.CreateAsset(recipe, path);
         }   
     }
