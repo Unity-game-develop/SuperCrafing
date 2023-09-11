@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: f63da38c0c48e9a41947f4bd2c15bdfd, type: 3}
   _itemName: Archer Cuirass
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

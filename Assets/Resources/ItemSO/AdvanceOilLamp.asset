@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: 077c7c430b08b3c4088770893b8eb8d4, type: 3}
   _itemName: Advance Oil Lamp
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 30

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: 2f09a3c995a85c24db344a6a93893123, type: 3}
   _itemName: Breaker Hammer
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Game
 {
@@ -10,6 +11,7 @@ namespace Game
         [SerializeField] private UIOrderElement _orderElementPref;
         [SerializeField] private Transform _orderElementParentTransform;
         [SerializeField] private List<UIOrderElement> _waitingOrder;
+        [SerializeField] private TextMeshProUGUI _orderLimitText;
 
         void Start()
         {
@@ -19,6 +21,8 @@ namespace Game
             {
                 AddToWaitingList(order);
             }
+
+            _orderLimitText.text = 0 + "/" + OrderManager.Instance.OrderLimit;
         }
 
         public void UpdateUI(List<ItemSO> waitingItemList)
@@ -35,17 +39,21 @@ namespace Game
                     AddToWaitingList(waitingItemList[i]);
                     continue;
                 }
-                _waitingOrder[i].SetOrderItem(waitingItemList[i]);
+                _waitingOrder[i].SetItem(waitingItemList[i]);
                 _waitingOrder[i].gameObject.SetActive(true);
+                _waitingOrder[i].Show();
             }
+
+            _orderLimitText.text = OrderManager.Instance.CurrentOrderNumber + "/" + OrderManager.Instance.OrderLimit;
         }
 
         public void AddToWaitingList(ItemSO item)
         {
             UIOrderElement newOrder = Instantiate(_orderElementPref, _orderElementParentTransform);
-            newOrder.SetOrderItem(item);
-            _waitingOrder.Add(newOrder);
             newOrder.gameObject.SetActive(true);
+            newOrder.SetItem(item);
+            newOrder.Show();
+            _waitingOrder.Add(newOrder);
         }
     }
 

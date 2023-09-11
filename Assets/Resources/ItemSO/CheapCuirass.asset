@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: e759ef198f018d747a10cdb34a9e779e, type: 3}
   _itemName: Cheap Cuirass
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

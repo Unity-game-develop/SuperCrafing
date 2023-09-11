@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: 2d46188167988264b90540a10d490a13, type: 3}
   _itemName: Cupper Axe
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

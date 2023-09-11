@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: 47c697c1c80039741a6868c386dde10b, type: 3}
   _itemName: Iron Shovel
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

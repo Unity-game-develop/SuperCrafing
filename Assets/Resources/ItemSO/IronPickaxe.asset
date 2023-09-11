@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: b311fb0222f5dc842913373da40bcbdd, type: 3}
   _itemName: Iron Axe
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

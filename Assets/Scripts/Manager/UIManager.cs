@@ -55,7 +55,6 @@ namespace Game
 
         private void HideCustomerPanel()
         {
-            Debug.Log("hide");
             _customerPanel.transform.DOMove(_customerOrderOut.position, 1f).SetEase(Ease.InBounce);
         }
 

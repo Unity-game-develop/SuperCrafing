@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: e630084b15433c945993568ba3839195, type: 3}
   _itemName: Large Hammer
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 20

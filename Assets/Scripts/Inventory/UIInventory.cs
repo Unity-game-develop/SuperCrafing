@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NOOD;
 
 namespace Game
 {
-    public class UIInventory : MonoBehaviour
+    public class UIInventory : MonoBehaviorInstance<UIInventory>
     {
         [SerializeField] private UIInventorySlot _slotPref;
-        [SerializeField] private Transform _slotParentTransform;
+        [SerializeField] private Transform _slotHolder;
         private List<UIInventorySlot> _uiInventorySlots = new List<UIInventorySlot>();
         private int defaultSlotNumber = 12;
 
@@ -26,20 +27,22 @@ namespace Game
 
         private void CreateNewSlot()
         {
-            UIInventorySlot slot = Instantiate(_slotPref, _slotParentTransform);
+            UIInventorySlot slot = Instantiate(_slotPref, _slotHolder.transform);
             _uiInventorySlots.Add(slot);
             slot.gameObject.SetActive(true);
         }
 
         public void UpdateUI(List<InventorySlot> inventorySlots)
         {
+            int index;
             for(int i = 0; i < inventorySlots.Count; i++)
             {
                 if(i > _uiInventorySlots.Count - 1)
                 {
                     CreateNewSlot();
                 }
-                _uiInventorySlots[i].SetInventoryUI(inventorySlots[i], i);
+                index = i;
+                _uiInventorySlots[i].SetInventoryUI(inventorySlots[index], index);
             }
         }
     }

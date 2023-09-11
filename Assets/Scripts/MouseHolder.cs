@@ -29,5 +29,9 @@ namespace Game
         {
             return _tempItem.itemSO;
         }
+        public int GetItemSlotIndex()
+        {
+            return _tempItem.slotIndex;
+        }
     }
 }

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: 87b742523a999fd40bf921a052b90c26, type: 3}
   _itemName: Red Fabric Cap
+  _itemType: 1
   _itemDescription: 
   _itemPrice: 30
