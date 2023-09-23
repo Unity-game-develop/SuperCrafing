@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace NOOD.Data
 {
     public class DataManager<T> where T : new()
     {

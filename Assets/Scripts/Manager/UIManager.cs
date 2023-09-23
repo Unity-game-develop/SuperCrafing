@@ -39,6 +39,7 @@ namespace Game
             }
             else
                 Destroy(this.gameObject);
+
         }
 
         void Start()

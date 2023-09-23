@@ -55,7 +55,11 @@
     },
     "git.ignoreLimitWarning": true,
     "cSpell.words": [
+        "asmdef",
+        "gameobject",
+        "IMGUI",
         "Itemable",
+        "Raycaster",
         "Stackable"
     ]
 }
