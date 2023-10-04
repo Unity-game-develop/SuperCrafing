@@ -1,15 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD;
+using NOOD.Interface;
+using DG.Tweening;
 
 namespace Game
 {
-    public class UIStore : MonoBehaviorInstance<UIStore>
+    public class UIStore : MonoBehaviorInstance<UIStore>, INoodyUI
     {
         [SerializeField] private List<UIStoreElement> _uiStoreElements;
         [SerializeField] private UIStoreElement _elementPref;
         [SerializeField] private Transform _elementParentTransform;
+        [SerializeField] private Transform _storeIn, _storeOut;
 
         void Start() 
         {
@@ -66,6 +68,16 @@ namespace Game
 
         public void RemoveFromInventory(int slotIndex)
         {
+        }
+
+        public void Open()
+        {
+            this.transform.DOMove(_storeIn.position, 1f).SetEase(Ease.InOutCubic);
+        }
+
+        public void Close()
+        {
+            this.transform.DOMove(_storeOut.position, 1f).SetEase(Ease.InOutCubic);
         }
     }
 }

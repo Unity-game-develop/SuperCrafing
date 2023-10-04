@@ -2,20 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NOOD.Interface;
 
 namespace NOOD.UI
 {
-    public class NoodUI : MonoBehaviour
+    public class NoodUI : MonoBehaviour, INoodyUI
     {
-        public static T Create<T>(Transform parent = null) where T : NoodUI
+        public static T Create<T>(Transform parent = null) where T : INoodyUI
         {
-            T prefab = Resources.FindObjectsOfTypeAll<T>()[0];
-            T temp = Instantiate(prefab, parent);
+            MonoBehaviour prefab = null;
+            MonoBehaviour[] prefabs = Resources.FindObjectsOfTypeAll<MonoBehaviour>();
+            foreach(var pre in prefabs)
+            {
+                if(pre.GetComponentInChildren<T>() != null)
+                {
+                    prefab = pre;
+                }
+            }
+            MonoBehaviour temp = Instantiate(prefab, parent);
             if(temp == null)
             {
                 Debug.LogError("Can't find prefab with type " + typeof(T).Name);
             }
-            return temp;
+            return temp.GetComponentInChildren<T>();
         }
         
 

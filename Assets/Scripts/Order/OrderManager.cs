@@ -16,7 +16,7 @@ namespace Game
         // Start is called before the first frame update
         void Start()
         {
-            UIManager.Instance._onOrderAcceptBtnPress += OnAcceptOrder;
+            UIController.Instance._onOrderAcceptBtnPress += OnAcceptOrder;
             Invoke(nameof(CreateNewOrder), 3f);
         }
 
@@ -24,7 +24,7 @@ namespace Game
         {
             _currentOrderItem = ItemMaster.RandomItem();
             string customerSentence = $"Give me <color=#F80000>{_currentOrderItem._itemName}</color>. I will pay you <color=#FDD000>{_currentOrderItem._itemPrice + UnityEngine.Random.Range(0, 10)} gold</color> ";
-            UIManager.Instance.CreateCustomerOrder(customerSentence, _currentOrderItem);
+            UIController.Instance.CreateCustomerOrder(customerSentence, _currentOrderItem);
         }
 
         public void OnAcceptOrder()
@@ -36,7 +36,7 @@ namespace Game
             else
             {
                 _orderItems.Add(_currentOrderItem);
-                UIManager.Instance.UpdateUIOrder(_orderItems);
+                UIController.Instance.UpdateUIOrder(_orderItems);
             }
         }
     }

@@ -22,7 +22,7 @@ namespace Game
 
         void Start() 
         {
-            UIManager.Instance._craftRequest = StartCraft;
+            UIController.Instance._craftRequest = StartCraft;
             _newItemObject.gameObject.SetActive(false);
             LoadRecipe();
         }

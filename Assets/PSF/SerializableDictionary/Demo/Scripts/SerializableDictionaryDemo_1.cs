@@ -1,6 +1,6 @@
 ﻿using System;
-using SerializableDictionary.Scripts;
 using UnityEngine;
+using NOOD.Extension;
 
 namespace SerializableDictionary.Demo.Scripts
 {

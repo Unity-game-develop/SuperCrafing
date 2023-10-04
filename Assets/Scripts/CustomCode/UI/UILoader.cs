@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD.UI;
+using NOOD.Interface;
 
 namespace NOOD.UI
 {
@@ -22,7 +23,7 @@ namespace NOOD.UI
         #endregion
 
         #region LoadUI
-        public static T LoadUI<T>() where T : NoodUI
+        public static T LoadUI<T>() where T : INoodyUI
         {
             if(_noodUIDic.ContainsKey(typeof(T)))
             {
@@ -32,13 +33,14 @@ namespace NOOD.UI
             }
             else
             {
+                Type type = typeof(T);
                 T ui = NoodUI.Create<T>(_parentUITransform);
                 ui.Open();
                 AddUI(ui);
                 return ui;
             }
         }
-        private static void AddUI(NoodUI ui)
+        private static void AddUI(INoodyUI ui)
         {
             if (!_noodUIDic.ContainsKey(ui.GetType()))
             {
@@ -48,7 +50,7 @@ namespace NOOD.UI
         #endregion
 
         #region CloseUI
-        public static void CloseUI<T>() where T : NoodUI
+        public static void CloseUI<T>() where T : INoodyUI
         {
             T ui = GetUI<T>();
             if(ui != null)
@@ -57,14 +59,14 @@ namespace NOOD.UI
         #endregion
 
         #region GetUI
-        public static T GetUI<T>() where T : NoodUI
+        public static T GetUI<T>() where T : INoodyUI
         {
             if(_noodUIDic.ContainsKey(typeof(T)))
             {
                 return (T) _noodUIDic[typeof(T)];
             }
             Debug.Log("Can't find " + typeof(T));
-            return null;
+            return default;
         }
         #endregion
 

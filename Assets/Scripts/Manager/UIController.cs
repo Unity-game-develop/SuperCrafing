@@ -8,9 +8,9 @@ using DG.Tweening;
 
 namespace Game
 {
-    public class UIManager : MonoBehaviour
+    public class UIController : MonoBehaviour
     {
-        public static UIManager Instance;
+        public static UIController Instance;
         [SerializeField] private Button _craftBtn;
         public Action _craftRequest, _onOrderAcceptBtnPress, _onOrderDenyBtnPress;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD;
+using NOOD.UI;
 using NOOD.Sound;
 
 namespace Game
@@ -22,6 +23,7 @@ namespace Game
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
+                // UILoader.LoadUI<UITestUI>();
             }
         }
     }
