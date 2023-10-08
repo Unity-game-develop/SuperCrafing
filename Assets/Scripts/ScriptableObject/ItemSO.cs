@@ -13,6 +13,14 @@ namespace Game
         Material,
         item
     }
+    public enum ItemTier
+    {
+        Normal,
+        Bronze,
+        Silver,
+        Gold,
+        Purple
+    }
 
     [CreateAssetMenu(fileName = "ItemSO")]
     public class ItemSO : ScriptableObject
@@ -21,6 +29,7 @@ namespace Game
         public Sprite _itemIcon;
         public string _itemName;
         public ItemType _itemType;
+        public ItemTier _tier;
         [TextArea(10, 15)]
         public string _itemDescription;
         public int _itemPrice;

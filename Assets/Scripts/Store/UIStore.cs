@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD;
-using NOOD.Interface;
 using DG.Tweening;
 
 namespace Game
 {
-    public class UIStore : MonoBehaviorInstance<UIStore>, INoodyUI
+    public class UIStore : MonoBehaviorInstance<UIStore>
     {
         [SerializeField] private List<UIStoreElement> _uiStoreElements;
         [SerializeField] private UIStoreElement _elementPref;

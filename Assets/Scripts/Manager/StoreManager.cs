@@ -20,7 +20,7 @@ namespace Game
 
     public class StoreManager : MonoBehaviorInstance<StoreManager>
     {
-        private List<StoreStack> _storeItems = new List<StoreStack>();
+        private List<StoreStack> _storeItems = new();
 
         void Start()
         {
@@ -45,7 +45,7 @@ namespace Game
                 InventoryManager.Instance.AddToInventory(resultItem);
 
                 DataManager<PlayerData>.Data.money -= resultItem._itemPrice;
-                DataManager<PlayerData>.Save();
+                DataManager<PlayerData>.QuickSave();
                 UIStore.Instance.UpdateUI(_storeItems);
                 return true;
             }

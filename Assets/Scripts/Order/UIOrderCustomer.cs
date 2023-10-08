@@ -1,11 +1,10 @@
 using NOOD;
-using NOOD.Interface;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Game
 {
-    public class UIOrderCustomer : MonoBehaviorInstance<UIOrderCustomer>, INoodyUI
+    public class UIOrderCustomer : MonoBehaviorInstance<UIOrderCustomer>
     {
         [SerializeField] private Transform _uiIn, _uiOut;
 

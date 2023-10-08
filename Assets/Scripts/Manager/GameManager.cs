@@ -11,7 +11,7 @@ namespace Game
     {
         void Awake() 
         {
-            GameControlSystem.Init();
+            // GameControlSystem.Init();
         }
 
         // Update is called once per frame
@@ -24,6 +24,7 @@ namespace Game
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 // UILoader.LoadUI<UITestUI>();
+                Debug.Log(TierSystem.RandomTier(ItemTier.Silver, ItemTier.Purple));
             }
         }
     }
