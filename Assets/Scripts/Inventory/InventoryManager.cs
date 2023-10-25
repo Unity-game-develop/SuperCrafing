@@ -7,7 +7,7 @@ namespace Game
 {
     public class InventoryManager : MonoBehaviorInstance<InventoryManager>
     {
-        [SerializeField] List<ItemSO> defaultItems = new List<ItemSO>();
+        [SerializeField] List<ItemSO> defaultItems = new();
 
         private Inventory _inventory;
 
@@ -21,10 +21,7 @@ namespace Game
 
         private void LoadInventory()
         {
-            if (_inventory == null)
-            {
-                _inventory = new Inventory();
-            }
+            _inventory ??= new Inventory();
         }
 
         public void CallUpdateUI()

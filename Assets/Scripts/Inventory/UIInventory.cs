@@ -9,7 +9,7 @@ namespace Game
     {
         [SerializeField] private UIInventorySlot _slotPref;
         [SerializeField] private Transform _slotHolder;
-        private List<UIInventorySlot> _uiInventorySlots = new List<UIInventorySlot>();
+        private List<UIInventorySlot> _uiInventorySlots = new();
         private int defaultSlotNumber = 12;
 
         void Awake()

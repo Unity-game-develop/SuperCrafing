@@ -10,7 +10,7 @@ namespace Game
     [Serializable]
     public class Inventory 
     {
-        [SerializeField] private List<InventorySlot> _inventorySlots = new List<InventorySlot>();
+        [SerializeField] private List<InventorySlot> _inventorySlots = new();
 
         public List<InventorySlot> InventorySlots => _inventorySlots;
 
@@ -25,7 +25,7 @@ namespace Game
             // Go through all stackable slots
             if(returnQuantity > 0)
             {
-                InventorySlot newSlot = new InventorySlot();
+                InventorySlot newSlot = new();
                 newSlot.SetItemAndQuantity(item, returnQuantity);
                 _inventorySlots.Add(newSlot);
             }
@@ -44,8 +44,8 @@ namespace Game
 
         private List<InventorySlot> GetAddableSlot(ItemSO item)
         {
-            return _inventorySlots.Where(x => x.GetItem() == item && x.isStackable == true || 
-            x.isEmpty == true).ToList();
+            return _inventorySlots.Where(x => x.GetItem() == item && x.IsStackable == true || 
+            x.IsEmpty == true).ToList();
         }
     }
 

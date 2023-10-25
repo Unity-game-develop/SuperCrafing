@@ -4,31 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 namespace Game
 {
-    public class UIOrderElement : UIElement, IDropHandler
+    public class UIOrderElement : UIItemElement, IDropHandler
     {
         [SerializeField] private TextMeshProUGUI  _nameText;
+        [SerializeField] private UIItem _uiItem;
 
         public void OnDrop(PointerEventData eventData)
         {
             ItemSO dropItem = MouseHolder.Instance.GetItem();
-            if(dropItem == _item)
-            {
-                // Correct Item
-                // Deliver successfully
-                InventoryManager.Instance.RemoveFromInventory(MouseHolder.Instance.GetItemSlotIndex());
-                PlayerDataManager.Instance.AddMoney(_item._itemPrice);
-            }
+            DeliverManager.DeliverItem(_item, dropItem);
         }
 
         public override void SetItem (ItemSO item)
         {
             _item = item;
-            _icon.sprite = item._itemIcon;
+            _uiItem.SetItem(item);
+            _uiItem.PlayParticle(false);
             _nameText.text = item._itemName;
-            _moneyText.text = item._itemPrice.ToString();
+            _moneyText.text = MoneyManager.GetItemPrice(item).ToString();
         }
     }
 

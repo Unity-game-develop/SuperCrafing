@@ -29,10 +29,9 @@ namespace Game
         public Sprite _itemIcon;
         public string _itemName;
         public ItemType _itemType;
-        public ItemTier _tier;
+        public ItemTier _itemTier;
         [TextArea(10, 15)]
         public string _itemDescription;
-        public int _itemPrice;
     }
 
 

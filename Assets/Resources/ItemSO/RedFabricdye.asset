@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 21300000, guid: b5aadde79c0e8804796268b20ccaae2c, type: 3}
   _itemName: Red Fabric dye
+  _itemType: 0
+  _itemTier: 4
   _itemDescription: 
-  _itemPrice: 30

@@ -29,10 +29,10 @@ namespace Game
 
         public bool Buy(int index)
         {
-            if(DataManager<PlayerData>.Data.money < _storeItems[index]._item._itemPrice || _storeItems[index]._quantity <= 0)
+            if(DataManager<PlayerData>.Data.money < MoneyManager.GetItemPrice(_storeItems[index]._item)|| _storeItems[index]._quantity <= 0)
             {
                 Debug.Log("Money: " + DataManager<PlayerData>.Data.money);
-                Debug.Log("Price: " + _storeItems[index]._item._itemPrice);
+                Debug.Log("Price: " + MoneyManager.GetItemPrice(_storeItems[index]._item));
                 Debug.Log("Quantity: " + _storeItems[index]._quantity);
                 return false;
             }
@@ -44,7 +44,7 @@ namespace Game
                 ItemSO resultItem = _storeItems[index]._item;
                 InventoryManager.Instance.AddToInventory(resultItem);
 
-                DataManager<PlayerData>.Data.money -= resultItem._itemPrice;
+                DataManager<PlayerData>.Data.money -= MoneyManager.GetItemPrice(resultItem);
                 DataManager<PlayerData>.QuickSave();
                 UIStore.Instance.UpdateUI(_storeItems);
                 return true;
@@ -58,7 +58,7 @@ namespace Game
                 _storeItems.Add(new StoreStack(ItemMaster.RandomMaterial(), UnityEngine.Random.Range(4, 10)));
 
             }
-            UIStore.Instance.UpdateUI(_storeItems);
+            // UIStore.Instance.UpdateUI(_storeItems);
         }
     }
 }

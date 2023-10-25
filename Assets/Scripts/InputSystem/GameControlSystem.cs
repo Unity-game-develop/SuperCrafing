@@ -26,9 +26,9 @@ namespace Game
 
         public static void SaveKeyBinding()
         {
-            _gameControl.Game.Craft.SaveKeyBinding();
-            _gameControl.Game.OpenBook.SaveKeyBinding();
-            _gameControl.Game.OpenStore.SaveKeyBinding();
+            // _gameControl.Game.Craft.SaveKeyBinding();
+            // _gameControl.Game.OpenBook.SaveKeyBinding();
+            // _gameControl.Game.OpenStore.SaveKeyBinding();
         }
 
         public static void Init()

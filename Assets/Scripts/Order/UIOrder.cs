@@ -21,8 +21,6 @@ namespace Game
             {
                 AddToWaitingList(order);
             }
-
-            _orderLimitText.text = 0 + "/" + OrderManager.Instance.OrderLimit;
         }
 
         public void UpdateUI(List<ItemSO> waitingItemList)

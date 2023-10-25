@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5057b3e5730019d47b48a952bef956a7, type: 3}
   m_Name: RedFabric
   m_EditorClassIdentifier: 
-  _itemIcon: {fileID: 21300000, guid: db50eaf3a602d7549a4a031658d60561, type: 3}
+  _itemIcon: {fileID: 21300000, guid: c4cd9d55d10664f4d8667e9058ba78c6, type: 3}
   _itemName: Red Fabric
+  _itemType: 0
+  _tier: 2
   _itemDescription: 
   _itemPrice: 20

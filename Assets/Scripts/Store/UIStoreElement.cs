@@ -7,16 +7,17 @@ using UnityEngine.EventSystems;
 
 namespace Game
 {
-    public class UIStoreElement : UIElement, IPointerClickHandler
+    public class UIStoreElement : UIItemElement, IPointerClickHandler
     {
-        public bool _isHasItem => _item != null;
+        [SerializeField] private UIItem _uiItem;
+        public bool IsHasItem => _item != null;
         private int _quantity;
         private int _index;
 
         public override void SetItem(ItemSO item)
         {
             _item = item;
-            _icon.sprite = item._itemIcon;
+            _uiItem.SetItem(item);
             _quantityText.text = _quantity.ToString();
         }
         public void SetItemNumber(int number)

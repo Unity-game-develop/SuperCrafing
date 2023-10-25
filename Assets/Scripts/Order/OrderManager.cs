@@ -8,8 +8,8 @@ namespace Game
     public class OrderManager : MonoBehaviorInstance<OrderManager>
     {
         ItemSO _currentOrderItem;
-        private List<ItemSO> _orderItems = new List<ItemSO>();
-        private int _orderLimit = 10;
+        private List<ItemSO> _orderItems = new();
+        private int _orderLimit = 20;
         public int OrderLimit => _orderLimit;
         public int CurrentOrderNumber => _orderItems.Count;
 
@@ -23,7 +23,7 @@ namespace Game
         public void CreateNewOrder()
         {
             _currentOrderItem = ItemMaster.RandomItem();
-            string customerSentence = $"Give me <color=#F80000>{_currentOrderItem._itemName}</color>. I will pay you <color=#FDD000>{_currentOrderItem._itemPrice + UnityEngine.Random.Range(0, 10)} gold</color> ";
+            string customerSentence = $"Give me <color=#F80000>{_currentOrderItem._itemName}</color>. I will pay you <color=#FDD000>{MoneyManager.GetItemPrice(_currentOrderItem) + UnityEngine.Random.Range(0, 10)} gold</color> ";
             UIController.Instance.CreateCustomerOrder(customerSentence, _currentOrderItem);
         }
 

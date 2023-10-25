@@ -17,8 +17,9 @@ namespace Game
         private ItemSO resultItem;
 
         [SerializeField] private GameObject _newItemObject;
-        [SerializeField] private Image _newItemImage;
         [SerializeField] private Transform _spawnPos, _endPos;
+
+        bool _isItemAnimating = false;
 
         void Start() 
         {
@@ -63,7 +64,10 @@ namespace Game
             {
                 if(CompareRecipe(recipe, _item1, _item2))
                 {
-                    return recipe.result;
+                    ItemSO resultItem = recipe.result;
+                    resultItem._itemTier = TierSystem.RandomTier(_item1._itemTier, _item2._itemTier);
+                    Debug.Log("Create new Item: " + resultItem._itemName + resultItem._itemTier);
+                    return resultItem;
                 }
             }
             return null;
@@ -94,22 +98,29 @@ namespace Game
                     Debug.Log("Craft failed");
                     return;
                 }
-                //TODO: Spawn new item on the screen
-                _newItemObject.gameObject.SetActive(true);
-                this.CreateNewItem(resultItem._itemIcon);
+                // Spawn new item on the screen
+                this.CreateNewItem(resultItem);
                 InventoryManager.Instance.AddToInventory(resultItem);
             }, _craftingAnimation.GetCurrentAnimationTime());
         }
 
-        public void CreateNewItem (Sprite icon)
+        public void CreateNewItem (ItemSO item)
         {
-            _newItemImage.sprite = icon;
-            _newItemObject.transform.localScale = Vector3.zero;
-            _newItemObject.transform.DOScale(3, 1.5f).SetEase(Ease.OutBounce);
+            // Create new item GameObject
+            GameObject newItemObject = Instantiate(_newItemObject, _newItemObject.transform.parent);
+            newItemObject.gameObject.SetActive(true);
+            UIItem uiItem = newItemObject.GetComponentInChildren<UIItem>();
+            uiItem.SetItem(item);
+
+            // Play animation
+            uiItem.PlayParticle(true);
+            newItemObject.transform.localScale = Vector3.zero;
+            newItemObject.transform.position = _spawnPos.position;
+            newItemObject.transform.DOScale(3, 1.5f).SetEase(Ease.OutBounce);
             NOOD.NoodyCustomCode.StartDelayFunction(() =>
             {
-                _newItemObject.transform.DOMove(_endPos.position, 2f).SetEase(Ease.InOutCirc);
-                _newItemObject.transform.DOScale(2, 2f).SetEase(Ease.Flash).OnComplete(() => _newItemObject.gameObject.SetActive(false));
+                newItemObject.transform.DOMove(_endPos.position, 2f).SetEase(Ease.InOutCirc);
+                newItemObject.transform.DOScale(2, 2f).SetEase(Ease.Flash).OnComplete(() => Destroy(newItemObject));
             }, 2f);
         }
     }

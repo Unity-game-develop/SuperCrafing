@@ -10,8 +10,8 @@ namespace Game
         [SerializeField] private ItemSO _item;
         [SerializeField] private int _quantity;
         [SerializeField] private int _maxQuantity = 20;
-        public bool isStackable => _quantity < _maxQuantity;
-        public bool isEmpty => _item == null;
+        public bool IsStackable => _quantity < _maxQuantity;
+        public bool IsEmpty => _item == null;
 
         public int Quantity
         {

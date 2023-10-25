@@ -19,7 +19,6 @@ namespace Game
             {
                 string[] words = item._itemName.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 int price = words.Length * 10;
-                item._itemPrice = price;
                 EditorUtility.SetDirty(item);
                 AssetDatabase.SaveAssetIfDirty(item);
             }

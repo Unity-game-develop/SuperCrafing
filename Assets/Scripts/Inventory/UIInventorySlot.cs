@@ -14,9 +14,9 @@ namespace Game
         public int quantity;
     }
 
-    public class UIInventorySlot : UIElement, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler, IPointerUpHandler
+    public class UIInventorySlot : UIItemElement, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler, IPointerUpHandler
     {
-        private ItemSO _itemSO;
+        [SerializeField] private UIItem _uiItem;
         private int _index;
         private int _quantity;
         private Image _tempImage;
@@ -24,7 +24,7 @@ namespace Game
         private TempItem _tempItem;
         private Image _raycastImage;
         private float _holdTimer = 0f;
-        private float _holdDelay = 0.5f;
+        private float _holdDelay = 0.2f;
         private bool _isHold, _isDown;
 
         void Awake()
@@ -36,7 +36,7 @@ namespace Game
 
         void Update()
         {
-            if(_itemSO == null) return;
+            if(_item == null) return;
 
             if(_isDown == true)
             {
@@ -50,20 +50,23 @@ namespace Game
 
         public void SetInventoryUI(InventorySlot inventorySlot, int index)
         {
-            if(inventorySlot.isEmpty) 
+            if(inventorySlot.IsEmpty) 
             {
                 ResetSlot();
                 return;
             }
             else
             {
-                color.a = 1;
+                // Update data in logic
                 this._index = index;
-                this._itemSO = inventorySlot.GetItem();
-                this._icon.sprite = inventorySlot.GetIcon();
-                this._icon.color = color;
-                this._quantityText.text = inventorySlot.Quantity.ToString();
+                this._item = inventorySlot.GetItem();
                 this._quantity = inventorySlot.Quantity;
+
+                // Display data on UI
+                _uiItem.gameObject.SetActive(true);
+                _uiItem.SetItem(inventorySlot.GetItem());
+                _uiItem.PlayParticle(false);
+                this._quantityText.text = inventorySlot.Quantity.ToString();
             }
         }
 
@@ -82,9 +85,8 @@ namespace Game
         }
         public void ResetSlot()
         {
-            color.a = 0;
-            _icon.color = color;
-            _itemSO = null;
+            _uiItem.gameObject.SetActive(false);
+            _item = null;
             _quantityText.text = "0";
         }
 
@@ -105,11 +107,16 @@ namespace Game
 
             _tempItem = new TempItem {
                 slotIndex = this._index,
-                itemSO = this._itemSO,
+                itemSO = this._item,
                 quantity = this._quantity
             };
 
-            _tempImage = Instantiate(_icon, _icon.canvas.transform);
+            GameObject newImageObject = new("tempIcon");
+            newImageObject.transform.SetParent(UIController.Instance.transform);
+            newImageObject.AddComponent<RectTransform>();
+            _tempImage = newImageObject.AddComponent<Image>();
+            _tempImage.sprite = _item._itemIcon;
+            _tempImage.maskable = false;
             _tempImage.transform.position = eventData.position;
             _tempImage.raycastTarget = false;
             MouseHolder.Instance.SetTempItem(_tempItem);
@@ -118,7 +125,7 @@ namespace Game
         public void OnEndDrag(PointerEventData eventData)
         {
             if(!_isHold) return;
-            Destroy(_tempImage);
+            Destroy(_tempImage.gameObject);
             _isDown = false;
             _isHold = false;
             _holdTimer = 0;
